@@ -11,6 +11,7 @@ interface FooterConfig {
   phone: string;
   email: string;
   hours: string;
+  lunch_hours: string;
 }
 
 const defaultConfig: FooterConfig = {
@@ -21,6 +22,7 @@ const defaultConfig: FooterConfig = {
   phone: "",
   email: "",
   hours: "평일 09:00 ~ 18:00",
+  lunch_hours: "12:00 ~ 13:00",
 };
 
 export default function FooterAdminPage() {
@@ -66,6 +68,7 @@ export default function FooterAdminPage() {
     { key: "phone", label: "전화번호", placeholder: "000-0000-0000" },
     { key: "email", label: "이메일", placeholder: "contact@example.com" },
     { key: "hours", label: "운영시간", placeholder: "평일 09:00 ~ 18:00" },
+    { key: "lunch_hours", label: "점심시간", placeholder: "12:00 ~ 13:00" },
   ];
 
   return (
