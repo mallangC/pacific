@@ -87,27 +87,19 @@ export default function InquiriesAdminPage() {
             {inquiries.map((inquiry) => (
               <li key={inquiry.id} className="px-6 py-5">
                 <div className="flex items-start justify-between gap-4 mb-3">
-                  <div>
-                    <span className="text-sm font-medium text-gray-900">{inquiry.name}</span>
-                    <span className="mx-2 text-gray-300">·</span>
-                    <span className="text-xs text-gray-500">{inquiry.phone}</span>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-gray-400 w-10">이름</span>
+                      <span className="text-sm font-medium text-gray-900">{inquiry.name}</span>
+                    </div>
                     {inquiry.email && (
-                      <>
-                        <span className="mx-2 text-gray-300">·</span>
-                        <span className="text-xs text-gray-500">{inquiry.email}</span>
-                      </>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-gray-400 w-10">이메일</span>
+                        <span className="text-xs text-gray-600">{inquiry.email}</span>
+                      </div>
                     )}
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0">
-                    <span
-                      className={`text-xs px-2 py-0.5 rounded-full ${
-                        inquiry.status === "replied"
-                          ? "bg-green-50 text-green-600"
-                          : "bg-yellow-50 text-yellow-600"
-                      }`}
-                    >
-                      {statusLabel[inquiry.status] ?? inquiry.status}
-                    </span>
                     <span className="text-xs text-gray-400">
                       {new Date(inquiry.created_at).toLocaleDateString("ko-KR")}
                     </span>
@@ -123,7 +115,7 @@ export default function InquiriesAdminPage() {
                   </div>
                 )}
 
-                {replyTarget === inquiry.id ? (
+                {/* {replyTarget === inquiry.id ? (
                   <div className="space-y-2">
                     <textarea
                       rows={3}
@@ -163,7 +155,15 @@ export default function InquiriesAdminPage() {
                       삭제
                     </button>
                   </div>
-                )}
+                )} */}
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => handleDelete(inquiry.id)}
+                    className="text-xs text-red-400 hover:text-red-600 transition-colors"
+                  >
+                    삭제
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
