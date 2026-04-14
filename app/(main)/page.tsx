@@ -5,7 +5,7 @@ export default function HomePage() {
   return (
     <>
       {/* 히어로 섹션 */}
-      <section className="relative w-full h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="relative w-full h-[60vh] flex items-center justify-center overflow-hidden">
         {/* 배경 이미지 */}
         <Image
           src="/hero.jpg"
@@ -43,12 +43,6 @@ export default function HomePage() {
               상담문의
             </Link>
           </div>
-        </div>
-
-        {/* 스크롤 인디케이터 */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/50 text-xs tracking-widest flex flex-col items-center gap-2">
-          <span>SCROLL</span>
-          <span className="block w-px h-8 bg-white/30" />
         </div>
       </section>
 
