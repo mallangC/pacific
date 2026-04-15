@@ -38,6 +38,10 @@ export default function DomesticPortfolioPage() {
       });
   }, [year, month]);
 
+  const closedRows = rows.filter(r => r.return_rate != null && r.status !== "보유중");
+  const totalReturn = closedRows.reduce((sum, r) => sum + (r.return_rate ?? 0), 0);
+  const totalReturnStr = totalReturn > 0 ? `+${totalReturn.toFixed(2)}%` : `${totalReturn.toFixed(2)}%`;
+
   function prevMonth() {
     if (month === 1) { setYear(y => y - 1); setMonth(12); }
     else setMonth(m => m - 1);
@@ -62,6 +66,16 @@ export default function DomesticPortfolioPage() {
             </span>
             <button onClick={nextMonth} className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-900 transition-colors text-lg">›</button>
           </div>
+
+          {/* 월 전체 수익률 */}
+          {!loading && rows.length > 0 && (
+            <div className="border-t border-b border-gray-200 py-3 flex items-center justify-end gap-4 mb-8 px-1">
+              <span className="text-xs text-gray-400">{year}년 {month}월 전체 수익률</span>
+              <span className={`text-sm font-semibold ${totalReturn >= 0 ? "text-red-500" : "text-blue-500"}`}>
+                {totalReturnStr}
+              </span>
+            </div>
+          )}
 
           {/* 테이블 */}
           {loading ? (
@@ -91,7 +105,7 @@ export default function DomesticPortfolioPage() {
                       <td className="px-4 py-3 text-gray-500">{row.stock_code}</td>
                       <td className="px-4 py-3 text-right">{row.entry_price.toLocaleString()}</td>
                       <td className="px-4 py-3 text-center">
-                        <span className={`text-xs px-2 py-0.5 rounded-full ${row.status === "매도완료" ? "bg-green-50 text-green-600" : "bg-yellow-50 text-yellow-600"}`}>
+                        <span className={`text-xs px-2 py-0.5 rounded-full ${row.status === "익절" ? "bg-green-50 text-green-600" : row.status === "손절" ? "bg-blue-50 text-blue-500" : row.status === "보합" ? "bg-gray-100 text-gray-500" : "bg-yellow-50 text-yellow-600"}`}>
                           {row.status}
                         </span>
                       </td>

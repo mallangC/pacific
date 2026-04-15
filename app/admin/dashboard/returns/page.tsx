@@ -45,11 +45,21 @@ const DOMESTIC_EMPTY = {
 const INDEX_EMPTY = {
   buy_date: "",
   stock_name: "",
-  status: "보유중",
+  status: "익절",
   return_rate: "",
   target_year: new Date().getFullYear(),
   target_month: new Date().getMonth() + 1,
 };
+
+function statusBadge(status: string) {
+  switch (status) {
+    case "익절": return "bg-green-50 text-green-600";
+    case "손절": return "bg-blue-50 text-blue-500";
+    case "보합": return "bg-gray-100 text-gray-500";
+    case "보유중": return "bg-yellow-50 text-yellow-600";
+    default: return "bg-gray-100 text-gray-500";
+  }
+}
 
 const YEARS = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i);
 const MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
@@ -288,6 +298,7 @@ export default function ReturnsAdminPage() {
   const [dForm, setDForm] = useState({ ...DOMESTIC_EMPTY });
   const [iForm, setIForm] = useState({ ...INDEX_EMPTY });
   const [saving, setSaving] = useState(false);
+  const [selectedAdminDate, setSelectedAdminDate] = useState<string | null>(null);
 
   /* ─── 데이터 로드 ─── */
   async function load(y = filterYear, m = filterMonth) {
@@ -423,7 +434,7 @@ export default function ReturnsAdminPage() {
         {(["domestic", "index"] as const).map((t) => (
           <button
             key={t}
-            onClick={() => setTab(t)}
+            onClick={() => { setTab(t); setSelectedAdminDate(null); }}
             className={`px-5 py-2.5 text-sm transition-colors border-b-2 -mb-px ${
               tab === t ? "border-primary text-primary font-medium" : "border-transparent text-gray-400 hover:text-primary"
             }`}
@@ -475,7 +486,7 @@ export default function ReturnsAdminPage() {
                   <td className="px-4 py-3 text-gray-500">{row.stock_code}</td>
                   <td className="px-4 py-3 text-right text-gray-600">{row.entry_price.toLocaleString()}</td>
                   <td className="px-4 py-3 text-center">
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${row.status === "매도완료" ? "bg-green-50 text-green-600" : "bg-yellow-50 text-yellow-600"}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-full ${statusBadge(row.status)}`}>
                       {row.status}
                     </span>
                   </td>
@@ -494,47 +505,127 @@ export default function ReturnsAdminPage() {
             </tbody>
           </table>
         </div>
-      ) : (
-        <div className="bg-white border border-gray-100 overflow-x-auto">
-          <table className="w-full text-sm min-w-[500px]">
-            <thead>
-              <tr className="border-b border-gray-100 bg-gray-50 text-xs text-gray-500">
-                <th className="px-4 py-3 text-left">표시 년월</th>
-                <th className="px-4 py-3 text-left">매수일자</th>
-                <th className="px-4 py-3 text-left">종목명</th>
-                <th className="px-4 py-3 text-center">상태</th>
-                <th className="px-4 py-3 text-right">수익률</th>
-                <th className="px-4 py-3 text-center">관리</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50">
-              {indexList.length === 0 ? (
-                <tr><td colSpan={6} className="px-4 py-8 text-center text-gray-400">등록된 데이터가 없습니다.</td></tr>
-              ) : indexList.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-4 py-3 text-gray-600">{row.target_year}년 {row.target_month}월</td>
-                  <td className="px-4 py-3 text-gray-600">{row.buy_date}</td>
-                  <td className="px-4 py-3 text-gray-800 font-medium">{row.stock_name}</td>
-                  <td className="px-4 py-3 text-center">
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${row.status === "매도완료" ? "bg-green-50 text-green-600" : "bg-yellow-50 text-yellow-600"}`}>
-                      {row.status}
-                    </span>
-                  </td>
-                  <td className={`px-4 py-3 text-right font-medium ${row.return_rate != null && row.return_rate >= 0 ? "text-red-500" : "text-blue-500"}`}>
-                    {row.return_rate != null ? `${row.return_rate > 0 ? "+" : ""}${row.return_rate}%` : "-"}
-                  </td>
-                  <td className="px-4 py-3 text-center">
-                    <div className="flex justify-center gap-3">
-                      <button onClick={() => openEdit(row)} className="text-xs text-gray-500 hover:text-gray-900 transition-colors">수정</button>
-                      <button onClick={() => handleDelete(row.id)} className="text-xs text-red-400 hover:text-red-600 transition-colors">삭제</button>
+      ) : (() => {
+        // 달력 계산
+        const byDate: Record<string, IndexReturn[]> = {};
+        indexList.forEach(r => {
+          if (!byDate[r.buy_date]) byDate[r.buy_date] = [];
+          byDate[r.buy_date].push(r);
+        });
+        const firstDow = new Date(filterYear, filterMonth - 1, 1).getDay();
+        const startOffset = (firstDow + 6) % 7;
+        const daysInMonth = new Date(filterYear, filterMonth, 0).getDate();
+        const totalCells = Math.ceil((startOffset + daysInMonth) / 7) * 7;
+        const toDateKey = (y: number, mo: number, d: number) =>
+          `${y}-${String(mo).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+        const selectedRows = selectedAdminDate ? (byDate[selectedAdminDate] ?? []) : [];
+
+        return (
+          <div>
+            {/* 달력 */}
+            {indexList.length === 0 ? (
+              <div className="py-12 text-center text-sm text-gray-400">등록된 데이터가 없습니다.</div>
+            ) : (
+              <>
+                {/* 요일 헤더 */}
+                <div className="grid grid-cols-7 border-t border-l border-gray-200">
+                  {["월","화","수","목","금","토","일"].map(d => (
+                    <div key={d} className="border-r border-b border-gray-200 py-2 text-center text-xs text-gray-400 font-medium">
+                      {d}
                     </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+                  ))}
+                </div>
+                {/* 날짜 셀 */}
+                <div className="grid grid-cols-7 border-l border-gray-200">
+                  {Array.from({ length: totalCells }).map((_, i) => {
+                    const dayNum = i - startOffset + 1;
+                    const isValid = dayNum >= 1 && dayNum <= daysInMonth;
+                    const dateKey = isValid ? toDateKey(filterYear, filterMonth, dayNum) : "";
+                    const dayRows = isValid ? (byDate[dateKey] ?? []) : [];
+                    const hasData = dayRows.length > 0;
+                    const dayReturn = dayRows.reduce((s, r) => s + (r.return_rate ?? 0), 0);
+                    const isSelected = dateKey === selectedAdminDate;
+
+                    return (
+                      <div
+                        key={i}
+                        onClick={() => {
+                          if (!isValid || !hasData) return;
+                          setSelectedAdminDate(isSelected ? null : dateKey);
+                        }}
+                        className={`border-r border-b border-gray-200 min-h-[72px] p-2 transition-colors
+                          ${!isValid ? "bg-gray-50" : ""}
+                          ${hasData ? "cursor-pointer" : ""}
+                          ${isSelected ? "bg-primary/5 ring-1 ring-inset ring-primary" : hasData ? "hover:bg-gray-50" : ""}
+                        `}
+                      >
+                        {isValid && (
+                          <>
+                            <p className={`text-xs font-medium mb-1 ${isSelected ? "text-primary" : "text-gray-700"}`}>
+                              {dayNum}
+                            </p>
+                            {hasData && (
+                              <div className="space-y-0.5">
+                                <p className="text-[10px] text-gray-400">{dayRows.length}건</p>
+                                <p className={`text-xs font-semibold ${dayReturn >= 0 ? "text-red-500" : "text-blue-500"}`}>
+                                  {dayReturn > 0 ? "+" : ""}{dayReturn.toFixed(2)}%
+                                </p>
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* 선택된 날짜 상세 */}
+                {selectedAdminDate && selectedRows.length > 0 && (
+                  <div className="mt-6 border border-gray-200">
+                    <div className="px-4 py-3 bg-gray-50 border-b border-gray-200 flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-900">
+                        {selectedAdminDate.replace(/-/g, ".")} 거래 내역
+                      </span>
+                      <button onClick={() => setSelectedAdminDate(null)} className="text-gray-400 hover:text-gray-600 text-lg leading-none">×</button>
+                    </div>
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="text-xs text-gray-500 border-b border-gray-100 bg-gray-50">
+                          <th className="px-4 py-2.5 text-left">종목명</th>
+                          <th className="px-4 py-2.5 text-center">상태</th>
+                          <th className="px-4 py-2.5 text-right">수익률</th>
+                          <th className="px-4 py-2.5 text-center">관리</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-50">
+                        {selectedRows.map(row => (
+                          <tr key={row.id} className="hover:bg-gray-50 transition-colors">
+                            <td className="px-4 py-3 font-medium text-gray-900">{row.stock_name}</td>
+                            <td className="px-4 py-3 text-center">
+                              <span className={`text-xs px-2 py-0.5 rounded-full ${statusBadge(row.status)}`}>
+                                {row.status}
+                              </span>
+                            </td>
+                            <td className={`px-4 py-3 text-right font-medium ${row.return_rate != null && row.return_rate >= 0 ? "text-red-500" : "text-blue-500"}`}>
+                              {row.return_rate != null ? `${row.return_rate > 0 ? "+" : ""}${row.return_rate}%` : "-"}
+                            </td>
+                            <td className="px-4 py-3 text-center">
+                              <div className="flex justify-center gap-3">
+                                <button onClick={() => openEdit(row)} className="text-xs text-gray-500 hover:text-gray-900 transition-colors">수정</button>
+                                <button onClick={() => handleDelete(row.id)} className="text-xs text-red-400 hover:text-red-600 transition-colors">삭제</button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+        );
+      })()}
 
       {/* 모달 */}
       {modal && (
@@ -582,7 +673,7 @@ function DomesticForm({ form, setForm }: { form: DForm; setForm: (f: DForm) => v
         </Field>
       </div>
       <Field label="상태">
-        <Dropdown buttonLabel={form.status} value={form.status} options={["보유중", "매도완료"]} onChange={v => setForm({ ...form, status: v })} />
+        <Dropdown buttonLabel={form.status} value={form.status} options={["보유중", "익절", "손절", "보합"]} onChange={v => setForm({ ...form, status: v })} />
       </Field>
       <div className={`grid grid-cols-2 gap-4 transition-opacity ${form.status === "보유중" ? "opacity-30 pointer-events-none" : ""}`}>
         <Field label="매도일자">
@@ -616,7 +707,7 @@ function IndexForm({ form, setForm }: { form: IForm; setForm: (f: IForm) => void
           <DatePicker value={form.buy_date} onChange={v => setForm({ ...form, buy_date: v })} />
         </Field>
         <Field label="상태">
-          <Dropdown buttonLabel={form.status} value={form.status} options={["보유중", "매도완료"]} onChange={v => setForm({ ...form, status: v })} />
+          <Dropdown buttonLabel={form.status} value={form.status} options={["익절", "손절"]} onChange={v => setForm({ ...form, status: v })} />
         </Field>
       </div>
       <Field label="종목명">

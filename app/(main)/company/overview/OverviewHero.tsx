@@ -96,9 +96,9 @@ export default function OverviewHero() {
           className="absolute bottom-5 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-1.5"
           style={{ willChange: "opacity" }}
         >
-          <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400">Scroll</span>
+          <span className="text-[10px] tracking-[0.2em] uppercase text-gray-600">Scroll</span>
           <div className="w-px h-8 overflow-hidden">
-            <div className="w-full bg-gray-400 animate-scroll-line" style={{ height: "100%" }} />
+            <div className="w-full bg-gray-600 animate-scroll-line" style={{ height: "100%" }} />
           </div>
         </div>
 

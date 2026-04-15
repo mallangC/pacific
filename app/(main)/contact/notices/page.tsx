@@ -34,7 +34,6 @@ export default async function NoticesPage({ searchParams }: Props) {
           <div className="flex items-center py-3 px-2 border-t border-b border-gray-200 bg-gray-50 text-xs text-gray-500">
             <span className="w-10 shrink-0 hidden md:block text-center">번호</span>
             <span className="flex-1 min-w-0 pl-2 md:pl-0 text-center">제목</span>
-            <span className="w-14 shrink-0 text-center hidden md:block">조회수</span>
             <span className="w-24 shrink-0 text-center">작성일</span>
           </div>
 
@@ -56,9 +55,6 @@ export default async function NoticesPage({ searchParams }: Props) {
                       {notice.title}
                     </span>
 
-                    <span className="w-14 shrink-0 text-center text-xs text-gray-400 hidden md:block">
-                      {notice.view_count ?? 0}
-                    </span>
                     <span className="w-24 shrink-0 text-center text-xs text-gray-400">
                       {new Date(notice.created_at).toLocaleDateString("ko-KR")}
                     </span>
@@ -72,7 +68,6 @@ export default async function NoticesPage({ searchParams }: Props) {
                 >
                   <span className="w-10 shrink-0 hidden md:block" />
                   <span className="flex-1 text-sm pl-2 md:pl-0">&nbsp;</span>
-                  <span className="w-14 shrink-0 hidden md:block" />
                   <span className="w-24 shrink-0" />
                 </div>
               );

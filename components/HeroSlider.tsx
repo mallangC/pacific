@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const slides = [
   "/hero/1.jpg",
   "/hero/2.jpg",
-  "/hero/3.jpg",
 ];
 
 export default function HeroSlider() {

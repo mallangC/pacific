@@ -108,15 +108,14 @@ export default function ValuesPage() {
       <PageHeader title="핵심 가치" />
 
       {values.map((item, idx) => (
-        <div key={idx} style={{ height: "200vh" }}>
-          <div
-            className="sticky top-25 flex flex-col items-center justify-center px-8 overflow-hidden"
-            style={{
-              height: "calc(100vh - 100px)",
-              zIndex: idx + 1,
-              background: BG[idx].bg,
-            }}
-          >
+        <div
+          key={idx}
+          className="relative flex flex-col items-center justify-center px-8 overflow-hidden"
+          style={{
+            minHeight: "100vh",
+            background: BG[idx].bg,
+          }}
+        >
             {/* 배경 번호 */}
             <span
               className="absolute font-bold select-none pointer-events-none"
@@ -164,7 +163,6 @@ export default function ValuesPage() {
                 </div>
               </div>
             )}
-          </div>
         </div>
       ))}
     </div>

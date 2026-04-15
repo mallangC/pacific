@@ -30,8 +30,6 @@ export default async function NoticeDetailPage({ params }: Props) {
               <p className="text-sm text-gray-400">
                 {new Date(notice.created_at).toLocaleDateString("ko-KR")}
               </p>
-              <span className="text-gray-200">·</span>
-              <p className="text-sm text-gray-400">조회 {notice.view_count ?? 0}</p>
             </div>
           </div>
 

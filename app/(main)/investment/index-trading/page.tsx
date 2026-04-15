@@ -58,7 +58,7 @@ export default function IndexTradingPage() {
   return (
     <div>
       <InvestmentHero
-        text="태평양투자그룹은 지수거래를 가장 구조적이고 효율적인 투자 방식으로 바라봅니다."
+        text={<>구조를 이해한 접근이<br className="hidden md:block" />시장을 다르게 만듭니다</>}
         imageSrc="/investment/index-trading.jpg"
         imageAlt="지수거래"
       />
