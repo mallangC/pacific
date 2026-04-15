@@ -29,13 +29,13 @@ export default function TeamPage() {
                 <div key={dept.name} className="flex flex-col items-center">
                   <div className="w-px h-8 bg-gray-200" />
                   <div className="w-full border border-gray-300 bg-white px-3 py-2.5 text-center">
-                    <p className="text-xs font-medium text-gray-800">{dept.name}</p>
+                    <p className="text-sm font-medium text-gray-800">{dept.name}</p>
                   </div>
                   <div className="w-px h-4 bg-gray-200" />
                   <div className="w-full space-y-1">
                     {dept.teams.map((team) => (
                       <div key={team} className="border border-gray-200 bg-gray-50 px-3 py-2 text-center">
-                        <p className="text-xs text-gray-500">{team}</p>
+                        <p className="text-sm text-gray-500">{team}</p>
                       </div>
                     ))}
                   </div>
@@ -75,11 +75,11 @@ export default function TeamPage() {
               {departments.map((dept) => (
                 <div key={dept.name} className="border border-gray-200 overflow-hidden">
                   <div className="bg-gray-50 px-4 py-2.5 border-b border-gray-200">
-                    <p className="text-sm font-medium text-gray-800">{dept.name}</p>
+                    <p className="text-base font-medium text-gray-800">{dept.name}</p>
                   </div>
                   <div className="divide-y divide-gray-100">
                     {dept.teams.map((team) => (
-                      <p key={team} className="px-4 py-2.5 text-sm text-gray-500">{team}</p>
+                      <p key={team} className="px-4 py-2.5 text-base text-gray-500">{team}</p>
                     ))}
                   </div>
                 </div>
@@ -95,7 +95,7 @@ export default function TeamPage() {
 function OrgBox({ label, highlight, sub }: { label: string; highlight?: boolean; sub?: boolean }) {
   return (
     <div
-      className={`px-6 py-2.5 text-center border text-sm font-medium min-w-[100px] ${
+      className={`px-6 py-2.5 text-center border text-base font-medium min-w-[100px] ${
         highlight
           ? "bg-gray-900 text-white border-gray-900"
           : sub
