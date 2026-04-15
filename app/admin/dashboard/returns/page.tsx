@@ -178,9 +178,15 @@ function Dropdown({ buttonLabel, value, options, onChange }: {
 }
 
 /* ─── 날짜 / 년월 선택용 데이터 ─────────────────────── */
-const ALL_YEARS = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + 1 - i);
-const ALL_MONTHS = Array.from({ length: 12 }, (_, i) => i + 1);
-const ALL_DAYS = Array.from({ length: 31 }, (_, i) => i + 1);
+const _now = new Date();
+const TODAY_YEAR  = _now.getFullYear();
+const TODAY_MONTH = _now.getMonth() + 1;
+const TODAY_DAY   = _now.getDate();
+const ALL_YEARS = Array.from({ length: 10 }, (_, i) => TODAY_YEAR - i);
+
+function daysInMonth(y: number, m: number) {
+  return new Date(y, m, 0).getDate();
+}
 
 /* ─── 날짜 선택 (년/월/일 커스텀 드롭다운) ──────────── */
 function DatePicker({ value, onChange }: { value: string; onChange: (v: string) => void }) {
@@ -188,6 +194,17 @@ function DatePicker({ value, onChange }: { value: string; onChange: (v: string) 
   const [y, setY] = useState(parts[0]);
   const [m, setM] = useState(parts[1] ? String(Number(parts[1])) : "");
   const [d, setD] = useState(parts[2] ? String(Number(parts[2])) : "");
+
+  const selYear  = Number(y) || TODAY_YEAR;
+  const selMonth = Number(m) || TODAY_MONTH;
+
+  const availableMonths = Array.from({ length: 12 }, (_, i) => i + 1).filter(
+    mo => selYear < TODAY_YEAR || mo <= TODAY_MONTH
+  );
+  const maxDay = daysInMonth(selYear, selMonth);
+  const availableDays = Array.from({ length: maxDay }, (_, i) => i + 1).filter(
+    dy => selYear < TODAY_YEAR || selMonth < TODAY_MONTH || dy <= TODAY_DAY
+  );
 
   function emit(newY: string, newM: string, newD: string) {
     if (newY && newM && newD) {
@@ -209,7 +226,7 @@ function DatePicker({ value, onChange }: { value: string; onChange: (v: string) 
         <Dropdown
           buttonLabel={m ? `${m}월` : "월"}
           value={m}
-          options={ALL_MONTHS.map(mo => String(mo))}
+          options={availableMonths.map(mo => String(mo))}
           onChange={v => { setM(v); emit(y, v, d); }}
         />
       </div>
@@ -217,7 +234,7 @@ function DatePicker({ value, onChange }: { value: string; onChange: (v: string) 
         <Dropdown
           buttonLabel={d ? `${d}일` : "일"}
           value={d}
-          options={ALL_DAYS.map(dy => String(dy))}
+          options={availableDays.map(dy => String(dy))}
           onChange={v => { setD(v); emit(y, m, v); }}
         />
       </div>
@@ -231,6 +248,10 @@ function YearMonthPicker({ year, month, onYearChange, onMonthChange }: {
   onYearChange: (v: number) => void;
   onMonthChange: (v: number) => void;
 }) {
+  const availableMonths = Array.from({ length: 12 }, (_, i) => i + 1).filter(
+    mo => year < TODAY_YEAR || mo <= TODAY_MONTH
+  );
+
   return (
     <div className="flex gap-2">
       <div className="flex-1">
@@ -245,7 +266,7 @@ function YearMonthPicker({ year, month, onYearChange, onMonthChange }: {
         <Dropdown
           buttonLabel={`${month}월`}
           value={String(month)}
-          options={ALL_MONTHS.map(m => String(m))}
+          options={availableMonths.map(m => String(m))}
           onChange={v => onMonthChange(Number(v))}
         />
       </div>
