@@ -1,3 +1,4 @@
+import PageHeader from "@/components/PageHeader";
 const sections = [
   {
     num: "01",
@@ -30,26 +31,19 @@ const sections = [
 export default function CmePage() {
   return (
     <div>
-      {/* 페이지 헤더 */}
-      <div className="bg-gray-50 border-b border-gray-100 py-8 md:py-12 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">파트너스</p>
-          <h1 className="text-2xl md:text-3xl font-light text-gray-900">CME</h1>
-          <p className="text-xs text-gray-400 mt-2">Chicago Mercantile Exchange</p>
-        </div>
-      </div>
+      <PageHeader title="CME" />
 
-      <div className="py-10 md:py-16 px-6">
+      <div className="pb-10 md:pb-16 px-6">
         <div className="max-w-3xl mx-auto space-y-0 divide-y divide-gray-100">
           {sections.map((sec) => (
-            <div key={sec.num} className="flex gap-4 md:gap-8 py-8 md:py-12">
+            <div key={sec.num} className="flex gap-4 md:gap-8 py-10 md:py-14">
               <span className="text-2xl font-light text-gray-200 tabular-nums shrink-0 w-6 text-right">
                 {sec.num}
               </span>
               <div className="space-y-4">
-                <h2 className="text-sm font-medium text-gray-900">{sec.title}</h2>
+                <h2 className="text-base md:text-lg font-bold text-gray-900">{sec.title}</h2>
                 {sec.paragraphs.map((p, i) => (
-                  <p key={i} className="text-sm text-gray-500 leading-relaxed">{p}</p>
+                  <p key={i} className="text-base md:text-lg text-gray-500 leading-relaxed">{p}</p>
                 ))}
               </div>
             </div>

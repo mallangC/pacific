@@ -1,3 +1,4 @@
+import PageHeader from "@/components/PageHeader";
 const departments = [
   { name: "경영지원본부", teams: ["인사재무팀", "경영지원팀"] },
   { name: "전략투자기획본부", teams: ["투자전략팀", "리서치팀", "트레이딩팀"] },
@@ -8,13 +9,7 @@ const departments = [
 export default function TeamPage() {
   return (
     <div>
-      {/* 페이지 헤더 */}
-      <div className="bg-gray-50 border-b border-gray-100 py-8 md:py-12 px-6">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">회사소개</p>
-          <h1 className="text-2xl md:text-3xl font-light text-gray-900">조직도</h1>
-        </div>
-      </div>
+      <PageHeader title="조직도" />
 
       {/* 데스크탑: 차트형 조직도 */}
       <div className="hidden md:block py-16 px-6 overflow-x-auto">

@@ -48,7 +48,7 @@ export default function AdminLoginPage() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-gray-400 transition-colors bg-white"
+              className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors bg-white"
               placeholder="admin@example.com"
             />
           </div>
@@ -60,7 +60,7 @@ export default function AdminLoginPage() {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-gray-400 transition-colors bg-white"
+              className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors bg-white"
               placeholder="••••••••"
             />
           </div>
@@ -70,7 +70,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-gray-900 text-white text-sm tracking-widest hover:bg-gray-700 transition-colors disabled:opacity-50 mt-2"
+            className="w-full py-3 bg-primary text-white text-sm tracking-widest hover:bg-primary-dark transition-colors disabled:opacity-50 mt-2"
           >
             {loading ? "로그인 중..." : "로그인"}
           </button>

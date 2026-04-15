@@ -1,3 +1,4 @@
+import PageHeader from "@/components/PageHeader";
 const paragraphs = [
   "태평양투자그룹은 안정적인 자산 관리와 효율적인 거래 지원을 위해 국제예탁결제기구인 ICSD 구조를 기반으로 한 계좌 시스템을 활용하고 있습니다.",
   "ICSD는 글로벌 금융시장에서 증권 보관 및 결제 안정성을 담당하는 핵심 인프라로, 국제적으로 검증된 자산 관리 체계를 제공합니다.",
@@ -9,26 +10,16 @@ const paragraphs = [
 export default function IcsdPage() {
   return (
     <div>
-      {/* 페이지 헤더 */}
-      <div className="bg-gray-50 border-b border-gray-100 py-8 md:py-12 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">파트너스</p>
-          <h1 className="text-2xl md:text-3xl font-light text-gray-900">국제예탁결제기구 ICSD</h1>
-          <p className="text-xs text-gray-400 mt-2">International Central Securities Depository</p>
-        </div>
-      </div>
+      <PageHeader title="국제예탁결제기구 ICSD" />
 
-      <div className="py-16 px-6">
+      <div className="pb-16 px-6">
         <div className="max-w-3xl mx-auto">
 
-          <div className="flex gap-4 md:gap-8 py-8 md:py-12">
-            <span className="text-2xl font-light text-gray-200 tabular-nums shrink-0 w-6 text-right">
-              01
-            </span>
+          <div className="py-8 md:py-12">
             <div className="space-y-5">
-              <h2 className="text-sm font-medium text-gray-900">국제예탁결제 시스템 기반 자산 관리</h2>
+              <h2 className="text-base md:text-lg font-bold text-gray-900">국제예탁결제 시스템 기반 자산 관리</h2>
               {paragraphs.map((p, i) => (
-                <p key={i} className="text-sm text-gray-500 leading-relaxed">{p}</p>
+                <p key={i} className="text-base md:text-lg text-gray-500 leading-relaxed">{p}</p>
               ))}
             </div>
           </div>
@@ -36,7 +27,7 @@ export default function IcsdPage() {
           {/* 마무리 */}
           <div className="border-t border-gray-100 pt-10">
             <div className="border-l-2 border-gray-200 pl-6">
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                 태평양투자그룹은 검증된 국제 금융 인프라를 기반으로 안정성과 효율성을 균형 있게 갖춘
                 투자 환경을 제공합니다.
               </p>

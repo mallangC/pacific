@@ -70,7 +70,7 @@ export default function NoticesAdminPage() {
               required
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
-              className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-gray-400"
+              className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-primary"
               placeholder="공지사항 제목"
             />
           </div>
@@ -81,14 +81,14 @@ export default function NoticesAdminPage() {
               rows={5}
               value={form.content}
               onChange={(e) => setForm({ ...form, content: e.target.value })}
-              className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-gray-400 resize-none"
+              className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-primary resize-none"
               placeholder="공지사항 내용"
             />
           </div>
           <button
             type="submit"
             disabled={submitting}
-            className="px-6 py-2 bg-gray-900 text-white text-sm hover:bg-gray-700 transition-colors disabled:opacity-50"
+            className="px-6 py-2 bg-primary text-white text-sm hover:bg-primary-dark transition-colors disabled:opacity-50"
           >
             {submitting ? "등록 중..." : "등록"}
           </button>

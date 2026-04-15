@@ -9,6 +9,7 @@ const navItems = [
   { label: "대시보드", href: "/admin/dashboard" },
   { label: "공지사항 관리", href: "/admin/dashboard/notices" },
   { label: "문의 관리", href: "/admin/dashboard/inquiries" },
+  { label: "수익률 관리", href: "/admin/dashboard/returns" },
   { label: "푸터 수정", href: "/admin/dashboard/footer" },
 ];
 
@@ -38,8 +39,8 @@ export default function AdminSidebar() {
               href={item.href}
               className={`block px-6 py-2.5 text-sm transition-colors ${
                 pathname === item.href
-                  ? "text-gray-900 bg-gray-50 font-medium"
-                  : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"
+                  ? "text-primary bg-primary-muted font-medium"
+                  : "text-gray-500 hover:text-primary hover:bg-primary-muted"
               }`}
             >
               {item.label}
@@ -79,7 +80,7 @@ export default function AdminSidebar() {
                 onClick={() => setMobileOpen(false)}
                 className={`block px-6 py-3 text-sm border-b border-gray-50 transition-colors ${
                   pathname === item.href
-                    ? "text-gray-900 bg-gray-50 font-medium"
+                    ? "text-primary bg-primary-muted font-medium"
                     : "text-gray-500"
                 }`}
               >

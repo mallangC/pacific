@@ -84,7 +84,7 @@ export default function FooterAdminPage() {
                 type="text"
                 value={config[field.key]}
                 onChange={(e) => setConfig({ ...config, [field.key]: e.target.value })}
-                className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-gray-400"
+                className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-primary"
                 placeholder={field.placeholder}
               />
             </div>
@@ -93,7 +93,7 @@ export default function FooterAdminPage() {
           <button
             type="submit"
             disabled={saving}
-            className="px-6 py-2 bg-gray-900 text-white text-sm hover:bg-gray-700 transition-colors disabled:opacity-50"
+            className="px-6 py-2 bg-primary text-white text-sm hover:bg-primary-dark transition-colors disabled:opacity-50"
           >
             {saving ? "저장 중..." : saved ? "저장완료!" : "저장"}
           </button>

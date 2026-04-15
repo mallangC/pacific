@@ -1,3 +1,4 @@
+import PageHeader from "@/components/PageHeader";
 const paragraphs = [
   "태평양투자그룹은 투자 정보의 전달과 시장 이해를 돕기 위해 콘텐츠 제작사인 원데이와 협력하여 다양한 미디어 콘텐츠를 제작·운영하고 있습니다.",
   "시장은 빠르게 변화하고 있으며, 정보의 전달 방식 또한 중요해지고 있습니다. 이에 따라 태평양투자그룹은 영상 콘텐츠를 기반으로 보다 직관적이고 이해하기 쉬운 형태의 시장 정보와 투자 인사이트를 제공하고 있습니다.",
@@ -7,28 +8,16 @@ const paragraphs = [
 export default function OnedayPage() {
   return (
     <div>
-      {/* 페이지 헤더 */}
-      <div className="bg-gray-50 border-b border-gray-100 py-8 md:py-12 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">파트너스</p>
-          <h1 className="text-2xl md:text-3xl font-light text-gray-900">
-            YOUTUBE 콘텐츠 제작사 원데이
-          </h1>
-          <p className="text-xs text-gray-400 mt-2">Media Partner · Oneday</p>
-        </div>
-      </div>
+      <PageHeader title="YOUTUBE 콘텐츠 제작사 원데이" />
 
-      <div className="py-16 px-6">
+      <div className="pb-16 px-6">
         <div className="max-w-3xl mx-auto">
 
-          <div className="flex gap-4 md:gap-8 py-8 md:py-12">
-            <span className="text-2xl font-light text-gray-200 tabular-nums shrink-0 w-6 text-right">
-              01
-            </span>
+          <div className="py-8 md:py-12">
             <div className="space-y-5">
-              <h2 className="text-sm font-medium text-gray-900">콘텐츠 제작 및 미디어 파트너</h2>
+              <h2 className="text-base md:text-lg font-bold text-gray-900">콘텐츠 제작 및 미디어 파트너</h2>
               {paragraphs.map((p, i) => (
-                <p key={i} className="text-sm text-gray-500 leading-relaxed">{p}</p>
+                <p key={i} className="text-base md:text-lg text-gray-500 leading-relaxed">{p}</p>
               ))}
             </div>
           </div>
@@ -36,7 +25,7 @@ export default function OnedayPage() {
           {/* 마무리 */}
           <div className="border-t border-gray-100 pt-10">
             <div className="border-l-2 border-gray-200 pl-6">
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed">
                 태평양투자그룹은 단순한 정보 전달을 넘어 지속적으로 소통하는 투자 환경을 만들어가고 있습니다.
               </p>
             </div>

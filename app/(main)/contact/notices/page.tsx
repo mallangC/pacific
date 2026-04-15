@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import PageHeader from "@/components/PageHeader";
 
 const PAGE_SIZE = 10;
 
@@ -24,14 +25,9 @@ export default async function NoticesPage({ searchParams }: Props) {
 
   return (
     <div>
-      <div className="bg-gray-50 border-b border-gray-100 py-8 md:py-12 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">고객안내</p>
-          <h1 className="text-2xl md:text-3xl font-light text-gray-900">공지사항</h1>
-        </div>
-      </div>
+      <PageHeader title="공지사항" />
 
-      <section className="py-10 md:py-16 px-6">
+      <section className="pb-10 md:pb-16 px-6">
         <div className="max-w-3xl mx-auto">
 
           {/* 헤더 */}
@@ -51,14 +47,15 @@ export default async function NoticesPage({ searchParams }: Props) {
                   <Link
                     key={notice.id}
                     href={`/contact/notices/${notice.id}`}
-                    className="flex items-center py-4 px-2 border-t border-gray-100 hover:bg-gray-50 transition-colors group"
+                    className="flex items-center py-4 px-2 border-t border-gray-100 hover:bg-primary-muted transition-colors group"
                   >
                     <span className="w-10 shrink-0 hidden md:block text-center text-xs text-gray-300">
                       {(count ?? 0) - from - idx}
                     </span>
-                    <span className="flex-1 min-w-0 text-sm text-gray-700 group-hover:text-gray-900 transition-colors truncate pl-2 md:pl-0 text-center">
+                    <span className="flex-1 min-w-0 text-base text-gray-700 group-hover:text-primary transition-colors truncate pl-2 md:pl-0 text-center">
                       {notice.title}
                     </span>
+
                     <span className="w-14 shrink-0 text-center text-xs text-gray-400 hidden md:block">
                       {notice.view_count ?? 0}
                     </span>
@@ -90,8 +87,8 @@ export default async function NoticesPage({ searchParams }: Props) {
                 href={`/contact/notices?page=${p}`}
                 className={`w-8 h-8 flex items-center justify-center text-xs rounded transition-colors ${
                   p === currentPage
-                    ? "bg-gray-200 text-gray-900 font-medium"
-                    : "text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+                    ? "bg-primary text-white font-medium"
+                    : "text-gray-400 hover:bg-primary-muted hover:text-primary"
                 }`}
               >
                 {p}

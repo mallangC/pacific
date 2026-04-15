@@ -49,7 +49,7 @@ export default async function NoticeDetailPage({ params }: Props) {
           <div className="mt-12 pt-6 border-t border-gray-100">
             <Link
               href="/contact/notices"
-              className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-700 transition-colors"
+              className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-primary transition-colors"
             >
               ← 목록으로
             </Link>

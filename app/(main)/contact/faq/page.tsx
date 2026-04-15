@@ -1,4 +1,4 @@
-import KakaoMap from "@/components/KakaoMap";
+import PageHeader from "@/components/PageHeader";
 
 const faqs = [
   {
@@ -23,21 +23,13 @@ const faqs = [
   },
 ];
 
-const ADDRESS = "서울특별시 영등포구 국제금융로 2길 32 여의도파이낸스 타워";
-
 export default function FaqPage() {
   return (
     <div>
-      {/* 페이지 헤더 */}
-      <div className="bg-gray-50 border-b border-gray-100 py-8 md:py-12 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">고객안내</p>
-          <h1 className="text-2xl md:text-3xl font-light text-gray-900">자주 묻는 질문</h1>
-        </div>
-      </div>
+      <PageHeader title="자주 묻는 질문" />
 
       {/* FAQ 목록 */}
-      <section className="py-10 md:py-16 px-6">
+      <section className="pb-10 md:pb-16 px-6">
         <div className="max-w-3xl mx-auto divide-y divide-gray-100">
           {faqs.map((faq, idx) => (
             <FaqItem key={idx} question={faq.q} answer={faq.a} />
@@ -45,39 +37,6 @@ export default function FaqPage() {
         </div>
       </section>
 
-      {/* 오시는 길 */}
-      <section className="py-10 md:py-16 px-6 bg-gray-50 border-t border-gray-100">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-xl font-light text-gray-900 mb-2">오시는 길</h2>
-          <div className="w-8 h-px bg-gray-300 mb-8" />
-
-          <div className="mb-6 space-y-2.5 text-sm text-gray-600">
-            <div className="flex gap-3">
-              <span className="text-gray-400 w-12 shrink-0">주소</span>
-              <span>{ADDRESS}</span>
-            </div>
-            <div className="flex gap-3">
-              <span className="text-gray-400 w-12 shrink-0">이메일</span>
-              <a
-                href="mailto:pacificgroup@google.com"
-                className="hover:text-gray-900 transition-colors"
-              >
-                pacificgroup@google.com
-              </a>
-            </div>
-            <div className="flex gap-3">
-              <span className="text-gray-400 w-12 shrink-0">운영</span>
-              <span>평일 09:00 ~ 18:00 (점심 12:00 ~ 13:00)</span>
-            </div>
-          </div>
-
-          {/* 카카오 지도 */}
-          <div className="rounded overflow-hidden border border-gray-200">
-            <KakaoMap address={ADDRESS} placeName="태평양투자그룹" />
-          </div>
-
-        </div>
-      </section>
     </div>
   );
 }
@@ -94,18 +53,16 @@ function FaqItem({
     <details className="group py-6 cursor-pointer">
       <summary className="flex items-start justify-between gap-4 list-none">
         <div className="flex items-start gap-3">
-          <span className="text-xs font-medium text-gray-400 mt-0.5 shrink-0">Q.</span>
-          <span className="text-sm text-gray-800 font-medium">{question}</span>
+          <span className="text-sm font-medium text-primary mt-0.5 shrink-0">Q.</span>
+          <span className="text-base md:text-lg text-gray-800 font-medium">{question}</span>
         </div>
         <span className="text-gray-400 shrink-0 text-xs mt-0.5 group-open:rotate-180 transition-transform">
           ▼
         </span>
       </summary>
       <div className="mt-4 flex gap-3">
-        <span className="text-xs font-medium text-gray-400 mt-0.5 shrink-0">A.</span>
-        <div
-          className={`text-sm leading-relaxed whitespace-pre-line text-gray-500`}
-        >
+        <span className="text-sm font-medium text-gray-400 mt-0.5 shrink-0">A.</span>
+        <div className="text-base md:text-lg leading-relaxed whitespace-pre-line text-gray-500">
           {answer}
         </div>
       </div>

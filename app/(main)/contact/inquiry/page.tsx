@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import PageHeader from "@/components/PageHeader";
 
 export default function InquiryPage() {
   const [form, setForm] = useState({
@@ -51,14 +52,9 @@ export default function InquiryPage() {
 
   return (
     <div>
-      <div className="bg-gray-50 border-b border-gray-100 py-12 px-6">
-        <div className="max-w-xl mx-auto">
-          <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">고객안내</p>
-          <h1 className="text-2xl md:text-3xl font-light text-gray-900">상담문의</h1>
-        </div>
-      </div>
+      <PageHeader title="상담문의" />
 
-      <section className="py-16 px-6">
+      <section className="pb-16 px-6">
         <div className="max-w-xl mx-auto">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
@@ -70,7 +66,7 @@ export default function InquiryPage() {
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-gray-400 transition-colors"
+                className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors"
                 placeholder="홍길동"
               />
             </div>
@@ -84,7 +80,7 @@ export default function InquiryPage() {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-gray-400 transition-colors"
+                className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors"
                 placeholder="example@email.com"
               />
             </div>
@@ -98,7 +94,7 @@ export default function InquiryPage() {
                 rows={6}
                 value={form.content}
                 onChange={(e) => setForm({ ...form, content: e.target.value })}
-                className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-gray-400 transition-colors resize-none"
+                className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors resize-none"
                 placeholder="문의 내용을 자세히 입력해 주세요."
               />
             </div>
@@ -112,7 +108,7 @@ export default function InquiryPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-gray-900 text-white text-sm tracking-widest hover:bg-gray-700 transition-colors disabled:opacity-50"
+              className="w-full py-3 bg-primary text-white text-sm tracking-widest hover:bg-primary-dark transition-colors disabled:opacity-50"
             >
               {loading ? "접수 중..." : "문의 접수"}
             </button>
