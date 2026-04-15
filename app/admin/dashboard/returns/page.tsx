@@ -453,7 +453,7 @@ export default function ReturnsAdminPage() {
           <table className="w-full text-sm min-w-[800px]">
             <thead>
               <tr className="border-b border-gray-100 bg-gray-50 text-xs text-gray-500">
-                <th className="px-4 py-3 text-left">기준 년월</th>
+                <th className="px-4 py-3 text-left">표시 년월</th>
                 <th className="px-4 py-3 text-left">매수일자</th>
                 <th className="px-4 py-3 text-left">종목명</th>
                 <th className="px-4 py-3 text-left">종목코드</th>
@@ -499,7 +499,7 @@ export default function ReturnsAdminPage() {
           <table className="w-full text-sm min-w-[500px]">
             <thead>
               <tr className="border-b border-gray-100 bg-gray-50 text-xs text-gray-500">
-                <th className="px-4 py-3 text-left">기준 년월</th>
+                <th className="px-4 py-3 text-left">표시 년월</th>
                 <th className="px-4 py-3 text-left">매수일자</th>
                 <th className="px-4 py-3 text-left">종목명</th>
                 <th className="px-4 py-3 text-center">상태</th>
@@ -595,7 +595,7 @@ function DomesticForm({ form, setForm }: { form: DForm; setForm: (f: DForm) => v
       <Field label="수익률 (%)">
         <NumberInput value={form.return_rate} onChange={v => setForm({ ...form, return_rate: v })} placeholder="0.00" decimal />
       </Field>
-      <Field label="기준 년월">
+      <Field label="표시 년월">
         <YearMonthPicker
           year={form.target_year} month={form.target_month}
           onYearChange={v => setForm({ ...form, target_year: v })}
@@ -625,7 +625,7 @@ function IndexForm({ form, setForm }: { form: IForm; setForm: (f: IForm) => void
       <Field label="수익률 (%)">
         <NumberInput value={form.return_rate} onChange={v => setForm({ ...form, return_rate: v })} placeholder="0.00" decimal />
       </Field>
-      <Field label="기준 년월">
+      <Field label="표시 년월">
         <YearMonthPicker
           year={form.target_year} month={form.target_month}
           onYearChange={v => setForm({ ...form, target_year: v })}
