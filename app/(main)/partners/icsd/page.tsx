@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "국제예탁결제기구 ICSD | 태평양투자그룹",
+  description: "태평양투자그룹의 파트너 국제예탁결제기구(ICSD) 기반 안정적인 자산 관리 시스템을 소개합니다.",
+  openGraph: { title: "국제예탁결제기구 ICSD | 태평양투자그룹", description: "태평양투자그룹의 파트너 국제예탁결제기구(ICSD) 기반 안정적인 자산 관리 시스템을 소개합니다." },
+};
 const paragraphs = [
   "태평양투자그룹은 안정적인 자산 관리와 효율적인 거래 지원을 위해 국제예탁결제기구인 ICSD 구조를 기반으로 한 계좌 시스템을 활용하고 있습니다.",
   "ICSD는 글로벌 금융시장에서 증권 보관 및 결제 안정성을 담당하는 핵심 인프라로, 국제적으로 검증된 자산 관리 체계를 제공합니다.",

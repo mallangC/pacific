@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "조직도 / 팀 소개 | 태평양투자그룹",
+  description: "태평양투자그룹의 조직 구성과 팀 소개입니다.",
+  openGraph: { title: "조직도 / 팀 소개 | 태평양투자그룹", description: "태평양투자그룹의 조직 구성과 팀 소개입니다." },
+};
 const departments = [
   { name: "경영지원본부", teams: ["인사재무팀", "경영지원팀"] },
   { name: "전략투자기획본부", teams: ["투자전략팀", "리서치팀", "트레이딩팀"] },

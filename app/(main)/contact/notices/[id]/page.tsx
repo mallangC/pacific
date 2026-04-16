@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
@@ -5,6 +6,16 @@ import NoticeViewTracker from "@/components/NoticeViewTracker";
 
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const supabase = await createClient();
+  const { data: notice } = await supabase.from("notices").select("title").eq("id", id).single();
+  return {
+    title: notice ? `${notice.title} | 태평양투자그룹` : "공지사항 | 태평양투자그룹",
+    openGraph: { title: notice ? `${notice.title} | 태평양투자그룹` : "공지사항 | 태평양투자그룹" },
+  };
 }
 
 export default async function NoticeDetailPage({ params }: Props) {

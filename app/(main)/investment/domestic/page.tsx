@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import InvestmentHero from "@/components/InvestmentHero";
 import FadeInSection from "@/components/FadeInSection";
+
+export const metadata: Metadata = {
+  title: "국내주식 투자 전략 | 태평양투자그룹",
+  description: "태평양투자그룹의 국내주식 투자 전략. 수급과 차트 분석을 기반으로 한 중장기 투자 접근법을 제시합니다.",
+  openGraph: { title: "국내주식 투자 전략 | 태평양투자그룹", description: "태평양투자그룹의 국내주식 투자 전략. 수급과 차트 분석을 기반으로 한 중장기 투자 접근법을 제시합니다." },
+};
 
 const points = [
   {

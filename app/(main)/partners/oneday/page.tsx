@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "원데이 | 태평양투자그룹",
+  description: "태평양투자그룹의 파트너 유튜브 콘텐츠 제작사 원데이와의 협력을 소개합니다.",
+  openGraph: { title: "원데이 | 태평양투자그룹", description: "태평양투자그룹의 파트너 유튜브 콘텐츠 제작사 원데이와의 협력을 소개합니다." },
+};
 const paragraphs = [
   "태평양투자그룹은 투자 정보의 전달과 시장 이해를 돕기 위해 콘텐츠 제작사인 원데이와 협력하여 다양한 미디어 콘텐츠를 제작·운영하고 있습니다.",
   "시장은 빠르게 변화하고 있으며, 정보의 전달 방식 또한 중요해지고 있습니다. 이에 따라 태평양투자그룹은 영상 콘텐츠를 기반으로 보다 직관적이고 이해하기 쉬운 형태의 시장 정보와 투자 인사이트를 제공하고 있습니다.",

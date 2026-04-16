@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import KakaoMap from "@/components/KakaoMap";
 import PageHeader from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "오시는길 | 태평양투자그룹",
+  description: "태평양투자그룹 오시는길. 서울특별시 영등포구 국제금융로 2길 32 여의도파이낸스 타워.",
+  openGraph: { title: "오시는길 | 태평양투자그룹", description: "태평양투자그룹 오시는길. 서울특별시 영등포구 국제금융로 2길 32 여의도파이낸스 타워." },
+};
 
 const ADDRESS = "서울특별시 영등포구 국제금융로 2길 32 여의도파이낸스 타워";
 

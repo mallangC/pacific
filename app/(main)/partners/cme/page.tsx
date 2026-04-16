@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "CME | 태평양투자그룹",
+  description: "태평양투자그룹의 파트너 CME(시카고상품거래소)와의 협력 관계를 소개합니다.",
+  openGraph: { title: "CME | 태평양투자그룹", description: "태평양투자그룹의 파트너 CME(시카고상품거래소)와의 협력 관계를 소개합니다." },
+};
 const sections = [
   {
     num: "01",

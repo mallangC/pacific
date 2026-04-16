@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "핵심 가치 | 태평양투자그룹",
+  description: "태평양투자그룹의 핵심 가치. 기준 중심의 투자, 리스크 관리, 데이터 기반 의사결정을 추구합니다.",
+  openGraph: { title: "핵심 가치 | 태평양투자그룹", description: "태평양투자그룹의 핵심 가치. 기준 중심의 투자, 리스크 관리, 데이터 기반 의사결정을 추구합니다." },
+};
 
 const values = [
   {

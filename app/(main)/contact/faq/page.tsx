@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "자주묻는질문 | 태평양투자그룹",
+  description: "태평양투자그룹에 자주 묻는 질문과 답변입니다.",
+  openGraph: { title: "자주묻는질문 | 태평양투자그룹", description: "태평양투자그룹에 자주 묻는 질문과 답변입니다." },
+};
 
 const faqs = [
   {

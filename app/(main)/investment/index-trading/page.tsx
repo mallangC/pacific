@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import InvestmentHero from "@/components/InvestmentHero";
 import FadeInSection from "@/components/FadeInSection";
+
+export const metadata: Metadata = {
+  title: "지수거래 전략 | 태평양투자그룹",
+  description: "태평양투자그룹의 지수거래 전략. 글로벌 파생상품 시장을 활용한 지수 매매 접근법을 제시합니다.",
+  openGraph: { title: "지수거래 전략 | 태평양투자그룹", description: "태평양투자그룹의 지수거래 전략. 글로벌 파생상품 시장을 활용한 지수 매매 접근법을 제시합니다." },
+};
 
 const points = [
   {

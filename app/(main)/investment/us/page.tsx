@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import InvestmentHero from "@/components/InvestmentHero";
 import FadeInSection from "@/components/FadeInSection";
+
+export const metadata: Metadata = {
+  title: "미국주식 투자 전략 | 태평양투자그룹",
+  description: "태평양투자그룹의 미국주식 투자 전략. 글로벌 트렌드 기반의 미국 시장 포트폴리오 접근법을 제시합니다.",
+  openGraph: { title: "미국주식 투자 전략 | 태평양투자그룹", description: "태평양투자그룹의 미국주식 투자 전략. 글로벌 트렌드 기반의 미국 시장 포트폴리오 접근법을 제시합니다." },
+};
 
 const points = [
   {

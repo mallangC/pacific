@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import FadeInSection from "@/components/FadeInSection";
+
+export const metadata: Metadata = {
+  title: "대표 인사말 | 태평양투자그룹",
+  description: "태평양투자그룹 대표의 인사말. 투자 철학과 비전을 전합니다.",
+  openGraph: { title: "대표 인사말 | 태평양투자그룹", description: "태평양투자그룹 대표의 인사말. 투자 철학과 비전을 전합니다." },
+};
 
 export default function GreetingPage() {
   return (

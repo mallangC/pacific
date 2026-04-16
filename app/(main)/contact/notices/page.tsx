@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import PageHeader from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "공지사항 | 태평양투자그룹",
+  description: "태평양투자그룹의 공지사항입니다.",
+  openGraph: { title: "공지사항 | 태평양투자그룹", description: "태평양투자그룹의 공지사항입니다." },
+};
 
 const PAGE_SIZE = 10;
 
