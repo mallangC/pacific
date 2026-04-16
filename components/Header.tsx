@@ -60,8 +60,8 @@ export default function Header() {
       {/* 메인 헤더 바 */}
       <div className="border-b border-gray-100">
         <div className="w-full px-0 flex items-center h-25 relative">
-          <Link href="/" className="shrink-0 flex items-center -ml-6">
-            <Image src="/logo.png" alt="태평양투자그룹" width={300} height={200} className="h-40 w-auto object-contain" priority />
+          <Link href="/" className="shrink-0 flex items-center px-5">
+            <Image src="/logo.png" alt="태평양투자그룹" width={300} height={200} className="h-16 w-auto object-contain" priority />
           </Link>
 
           <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 h-full items-center gap-1">

@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import OverviewHero from "./OverviewHero";
 import FadeInSection from "@/components/FadeInSection";
 import PageHeader from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "회사 개요 | 태평양투자그룹",
+  description: "글로벌 흐름 위에서 기준을 제시합니다. 태평양투자그룹은 국내주식, 미국주식, 지수거래 전문 통합 투자 그룹입니다.",
+  openGraph: {
+    title: "회사 개요 | 태평양투자그룹",
+    description: "글로벌 흐름 위에서 기준을 제시합니다. 태평양투자그룹은 국내주식, 미국주식, 지수거래 전문 통합 투자 그룹입니다.",
+  },
+};
 
 const investmentItems = [
   {

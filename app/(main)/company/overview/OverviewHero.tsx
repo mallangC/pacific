@@ -82,10 +82,8 @@ export default function OverviewHero() {
             className="max-w-4xl w-full"
             style={{ color: "#1f2937", willChange: "color" }}
           >
-            <p className="text-3xl md:text-4xl font-bold leading-snug tracking-tight text-center">
-              태평양투자그룹은 글로벌 금융시장의 흐름을 기반으로<br className="hidden md:block" />
-              국내주식, 미국주식, 그리고 지수 거래까지 아우르는<br className="hidden md:block" />
-              통합 투자 전략을 제공하는 전문 투자 그룹입니다.
+            <p className="text-3xl md:text-5xl font-bold leading-snug tracking-tight text-center">
+              글로벌 흐름 위에서 기준을 제시합니다
             </p>
           </div>
         </div>

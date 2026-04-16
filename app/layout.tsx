@@ -11,7 +11,25 @@ const pretendard = localFont({
 
 export const metadata: Metadata = {
   title: "태평양투자그룹",
-  description: "태평양투자그룹 공식 홈페이지",
+  description: "태평양투자그룹 공식 홈페이지. 글로벌 흐름 위에서 기준을 제시합니다. 국내주식, 미국주식, 지수거래 전문 투자 그룹.",
+  metadataBase: new URL("https://thepacificinvest.com"),
+  openGraph: {
+    title: "태평양투자그룹",
+    description: "태평양투자그룹 공식 홈페이지. 글로벌 흐름 위에서 기준을 제시합니다. 국내주식, 미국주식, 지수거래 전문 투자 그룹.",
+    url: "https://thepacificinvest.com",
+    siteName: "태평양투자그룹",
+    locale: "ko_KR",
+    type: "website",
+  },
+  icons: {
+    icon: "/favicon.png",
+  },
+  verification: {
+    google: "FhDoY-pHgCK4OCPOttRjrgU9w3DEmBfb6cypVjiEGGA",
+    other: {
+      "naver-site-verification": "2258b28bb8898020122e077e11d8b58f9ffebbf4",
+    },
+  },
 };
 
 export default function RootLayout({
