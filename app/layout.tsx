@@ -21,9 +21,6 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     type: "website",
   },
-  icons: {
-    icon: "/icon.png",
-  },
   verification: {
     google: "FhDoY-pHgCK4OCPOttRjrgU9w3DEmBfb6cypVjiEGGA",
     other: {
