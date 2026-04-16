@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: "/favicon.png",
+    icon: "/icon.png",
   },
   verification: {
     google: "FhDoY-pHgCK4OCPOttRjrgU9w3DEmBfb6cypVjiEGGA",
