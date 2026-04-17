@@ -129,7 +129,7 @@ export default function IndexPortfolioPage() {
                         if (!isValid || !hasData) return;
                         setSelectedDate(isSelected ? null : dateKey);
                       }}
-                      className={`border-r border-b border-gray-200 min-h-[72px] p-2 transition-colors
+                      className={`border-r border-b border-gray-200 min-h-[60px] sm:min-h-[72px] p-1 sm:p-2 transition-colors
                         ${!isValid ? "bg-gray-50" : ""}
                         ${hasData ? "cursor-pointer" : ""}
                         ${isSelected ? "bg-primary/5 ring-1 ring-inset ring-primary" : hasData ? "hover:bg-gray-50" : ""}
@@ -144,7 +144,8 @@ export default function IndexPortfolioPage() {
                             <div className="space-y-0.5">
                               <p className="text-[10px] text-gray-400">{dayRows.length}건</p>
                               <p className={`text-xs font-semibold ${dayReturn >= 0 ? "text-red-500" : "text-blue-500"}`}>
-                                {dayReturn > 0 ? "+" : ""}{dayReturn.toFixed(2)}%
+                                <span className="sm:hidden">{dayReturn > 0 ? "+" : ""}{dayReturn.toFixed(1)}%</span>
+                                <span className="hidden sm:inline">{dayReturn > 0 ? "+" : ""}{dayReturn.toFixed(2)}%</span>
                               </p>
                             </div>
                           )}
