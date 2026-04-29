@@ -192,7 +192,7 @@ const _now = new Date();
 const TODAY_YEAR  = _now.getFullYear();
 const TODAY_MONTH = _now.getMonth() + 1;
 const TODAY_DAY   = _now.getDate();
-const ALL_YEARS = Array.from({ length: 12 }, (_, i) => TODAY_YEAR + 2 - i);
+const ALL_YEARS = Array.from({ length: 10 }, (_, i) => TODAY_YEAR - i);
 
 function daysInMonth(y: number, m: number) {
   return new Date(y, m, 0).getDate();
