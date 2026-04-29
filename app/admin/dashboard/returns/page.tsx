@@ -192,7 +192,7 @@ const _now = new Date();
 const TODAY_YEAR  = _now.getFullYear();
 const TODAY_MONTH = _now.getMonth() + 1;
 const TODAY_DAY   = _now.getDate();
-const ALL_YEARS = Array.from({ length: 10 }, (_, i) => TODAY_YEAR - i);
+const ALL_YEARS = Array.from({ length: 12 }, (_, i) => TODAY_YEAR + 2 - i);
 
 function daysInMonth(y: number, m: number) {
   return new Date(y, m, 0).getDate();
@@ -208,13 +208,9 @@ function DatePicker({ value, onChange }: { value: string; onChange: (v: string) 
   const selYear  = Number(y) || TODAY_YEAR;
   const selMonth = Number(m) || TODAY_MONTH;
 
-  const availableMonths = Array.from({ length: 12 }, (_, i) => i + 1).filter(
-    mo => selYear < TODAY_YEAR || mo <= TODAY_MONTH
-  );
+  const availableMonths = Array.from({ length: 12 }, (_, i) => i + 1);
   const maxDay = daysInMonth(selYear, selMonth);
-  const availableDays = Array.from({ length: maxDay }, (_, i) => i + 1).filter(
-    dy => selYear < TODAY_YEAR || selMonth < TODAY_MONTH || dy <= TODAY_DAY
-  );
+  const availableDays = Array.from({ length: maxDay }, (_, i) => i + 1);
 
   function emit(newY: string, newM: string, newD: string) {
     if (newY && newM && newD) {
@@ -258,9 +254,7 @@ function YearMonthPicker({ year, month, onYearChange, onMonthChange }: {
   onYearChange: (v: number) => void;
   onMonthChange: (v: number) => void;
 }) {
-  const availableMonths = Array.from({ length: 12 }, (_, i) => i + 1).filter(
-    mo => year < TODAY_YEAR || mo <= TODAY_MONTH
-  );
+  const availableMonths = Array.from({ length: 12 }, (_, i) => i + 1);
 
   return (
     <div className="flex gap-2">
