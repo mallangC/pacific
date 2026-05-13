@@ -7,6 +7,7 @@ interface Inquiry {
   id: string;
   name: string;
   phone: string;
+  email: string;
   content: string;
   status: string;
   reply: string | null;
@@ -82,23 +83,23 @@ export default function InquiriesAdminPage() {
         ) : inquiries.length === 0 ? (
           <div className="px-6 py-8 text-center text-sm text-gray-400">접수된 문의가 없습니다.</div>
         ) : (
-          <ul className="p-4 space-y-3">
+          <ul className="space-y-3 p-4">
             {inquiries.map((inquiry) => (
-              <li key={inquiry.id} className="px-6 py-5 bg-gray-50 rounded border border-gray-100">
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <div className="space-y-1">
+              <li key={inquiry.id} className="bg-gray-50 border border-gray-100">
+                <div className="flex items-center justify-between gap-4 px-5 py-3">
+                  <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs text-gray-400 w-10">이름</span>
+                      <span className="text-xs text-gray-400">이름</span>
                       <span className="text-sm font-medium text-gray-900">{inquiry.name}</span>
                     </div>
                     {inquiry.phone && (
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-400 whitespace-nowrap">전화번호</span>
-                        <span className="text-xs text-gray-600 whitespace-nowrap">{inquiry.phone}</span>
+                        <span className="text-xs text-gray-400">연락처</span>
+                        <span className="text-xs text-gray-600">{inquiry.phone}</span>
                       </div>
                     )}
                   </div>
-                  <div className="flex items-center gap-3 flex-shrink-0">
+                  <div className="flex items-center gap-4 flex-shrink-0">
                     <span className="text-xs text-gray-400">
                       {new Date(inquiry.created_at).toLocaleDateString("ko-KR")}
                     </span>
@@ -111,12 +112,12 @@ export default function InquiriesAdminPage() {
                   </div>
                 </div>
 
-                <div className="border-t border-gray-100 pt-3 mb-3">
+                <div className="border-t border-gray-200 px-5 py-4">
                   <p className="text-sm text-gray-600 leading-relaxed">{inquiry.content}</p>
                 </div>
 
                 {inquiry.reply && (
-                  <div className="bg-gray-50 px-4 py-3 mb-3 border-l-2 border-gray-300">
+                  <div className="border-t border-gray-200 px-5 py-3 bg-white">
                     <p className="text-xs text-gray-400 mb-1">답변</p>
                     <p className="text-sm text-gray-600">{inquiry.reply}</p>
                   </div>
