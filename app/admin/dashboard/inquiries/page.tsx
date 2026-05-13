@@ -7,7 +7,6 @@ interface Inquiry {
   id: string;
   name: string;
   phone: string;
-  email: string;
   content: string;
   status: string;
   reply: string | null;
@@ -92,10 +91,10 @@ export default function InquiriesAdminPage() {
                       <span className="text-xs text-gray-400 w-10">이름</span>
                       <span className="text-sm font-medium text-gray-900">{inquiry.name}</span>
                     </div>
-                    {inquiry.email && (
+                    {inquiry.phone && (
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-400 w-10">이메일</span>
-                        <span className="text-xs text-gray-600">{inquiry.email}</span>
+                        <span className="text-xs text-gray-400 w-10">전화번호</span>
+                        <span className="text-xs text-gray-600">{inquiry.phone}</span>
                       </div>
                     )}
                   </div>

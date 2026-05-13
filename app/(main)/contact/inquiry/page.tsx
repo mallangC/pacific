@@ -7,7 +7,7 @@ import PageHeader from "@/components/PageHeader";
 export default function InquiryPage() {
   const [form, setForm] = useState({
     name: "",
-    email: "",
+    phone: "",
     content: "",
   });
   const [loading, setLoading] = useState(false);
@@ -73,15 +73,15 @@ export default function InquiryPage() {
 
 <div>
               <label className="block text-xs text-gray-500 mb-1.5">
-                이메일 <span className="text-red-400">*</span>
+                핸드폰번호 <span className="text-red-400">*</span>
               </label>
               <input
-                type="email"
+                type="tel"
                 required
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 className="w-full border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors"
-                placeholder="example@email.com"
+                placeholder="010-1234-5678"
               />
             </div>
 
