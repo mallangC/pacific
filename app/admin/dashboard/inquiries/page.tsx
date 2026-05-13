@@ -82,9 +82,9 @@ export default function InquiriesAdminPage() {
         ) : inquiries.length === 0 ? (
           <div className="px-6 py-8 text-center text-sm text-gray-400">접수된 문의가 없습니다.</div>
         ) : (
-          <ul className="divide-y divide-gray-50">
+          <ul className="p-4 space-y-3">
             {inquiries.map((inquiry) => (
-              <li key={inquiry.id} className="px-6 py-5">
+              <li key={inquiry.id} className="px-6 py-5 bg-gray-50 rounded border border-gray-100">
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
@@ -93,8 +93,8 @@ export default function InquiriesAdminPage() {
                     </div>
                     {inquiry.phone && (
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-400 w-10">전화번호</span>
-                        <span className="text-xs text-gray-600">{inquiry.phone}</span>
+                        <span className="text-xs text-gray-400 whitespace-nowrap">전화번호</span>
+                        <span className="text-xs text-gray-600 whitespace-nowrap">{inquiry.phone}</span>
                       </div>
                     )}
                   </div>
@@ -102,51 +102,6 @@ export default function InquiriesAdminPage() {
                     <span className="text-xs text-gray-400">
                       {new Date(inquiry.created_at).toLocaleDateString("ko-KR")}
                     </span>
-                  </div>
-                </div>
-
-                <p className="text-sm text-gray-600 mb-3 leading-relaxed">{inquiry.content}</p>
-
-                {inquiry.reply && (
-                  <div className="bg-gray-50 px-4 py-3 mb-3 border-l-2 border-gray-300">
-                    <p className="text-xs text-gray-400 mb-1">답변</p>
-                    <p className="text-sm text-gray-600">{inquiry.reply}</p>
-                  </div>
-                )}
-
-                {/* {replyTarget === inquiry.id ? (
-                  <div className="space-y-2">
-                    <textarea
-                      rows={3}
-                      value={replyText}
-                      onChange={(e) => setReplyText(e.target.value)}
-                      className="w-full border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:border-gray-400 resize-none"
-                      placeholder="답변 내용을 입력하세요."
-                    />
-                    <div className="flex gap-2">
-                      <button
-                        onClick={() => handleReply(inquiry.id)}
-                        disabled={submitting}
-                        className="px-4 py-1.5 bg-gray-900 text-white text-xs hover:bg-gray-700 transition-colors disabled:opacity-50"
-                      >
-                        답변 저장
-                      </button>
-                      <button
-                        onClick={() => { setReplyTarget(null); setReplyText(""); }}
-                        className="px-4 py-1.5 border border-gray-200 text-xs text-gray-600 hover:bg-gray-50 transition-colors"
-                      >
-                        취소
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex gap-3">
-                    <button
-                      onClick={() => { setReplyTarget(inquiry.id); setReplyText(inquiry.reply ?? ""); }}
-                      className="text-xs text-gray-500 hover:text-gray-900 transition-colors"
-                    >
-                      {inquiry.reply ? "답변 수정" : "답변"}
-                    </button>
                     <button
                       onClick={() => handleDelete(inquiry.id)}
                       className="text-xs text-red-400 hover:text-red-600 transition-colors"
@@ -154,15 +109,18 @@ export default function InquiriesAdminPage() {
                       삭제
                     </button>
                   </div>
-                )} */}
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => handleDelete(inquiry.id)}
-                    className="text-xs text-red-400 hover:text-red-600 transition-colors"
-                  >
-                    삭제
-                  </button>
                 </div>
+
+                <div className="border-t border-gray-100 pt-3 mb-3">
+                  <p className="text-sm text-gray-600 leading-relaxed">{inquiry.content}</p>
+                </div>
+
+                {inquiry.reply && (
+                  <div className="bg-gray-50 px-4 py-3 mb-3 border-l-2 border-gray-300">
+                    <p className="text-xs text-gray-400 mb-1">답변</p>
+                    <p className="text-sm text-gray-600">{inquiry.reply}</p>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
